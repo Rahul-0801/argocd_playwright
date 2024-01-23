@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playwright-test
+spec:
+  replicas: 1  # Number of test pods to run
+  selector:
+    matchLabels:
+      app: playwright-test
+  template:
+    metadata:
+      labels:
+        app: playwright-test
+    spec:
+      containers:
+      - name: playwright
+        image: my-playwright-test  #Replace with your image name
+        command: ["npx", "playwright", "test"]  #Run tests as entrypoint
